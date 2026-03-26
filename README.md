@@ -1,212 +1,58 @@
-# Technical Documentation Portfolio
+# Test Automation Portfolio
 
-**Author:** Senior Automation Engineer  
-**Purpose:** Sample technical documentation demonstrating systems thinking, architecture documentation, and knowledge transfer practices
+Sanitized technical documents from 11+ years of enterprise SDET work in C#/.NET, demonstrating Senior/Staff-level automation engineering across CI/CD architecture, distributed systems testing, BDD frameworks, and pipeline reliability.
 
----
-
-## Overview
-
-This portfolio contains sanitized versions of real production documentation I created while solving actual engineering challenges. These samples demonstrate my ability to:
-
-- Document complex distributed systems clearly
-- Explain architectural decisions and trade-offs
-- Create knowledge transfer materials for engineering teams
-- Diagnose and solve challenging technical problems
-- Communicate effectively to different audiences (executives, engineers, QA)
-
-All examples have been sanitized to remove company-specific information while preserving technical content and structure.
+These documents are drawn from real production work — architecture decisions, reliability analyses, debugging investigations, and framework documentation — with proprietary details removed.
 
 ---
 
-## Document Descriptions
+## Documents
 
-### 01. CI/CD YAML Trigger Reference
-**Type:** Quick Reference Guide  
-**Audience:** DevOps Engineers, QA Automation  
-**Purpose:** Comprehensive reference for Azure Pipelines YAML trigger configurations
+### CI/CD Pipeline Architecture
 
-**Key Features:**
-- Clear categorization of trigger types
-- Code examples with inline comments
-- UI vs YAML configuration guidance
-- Multi-repo trigger patterns
+**[01 — CI/CD YAML Trigger Reference](01_CICD_YAML_Trigger_Reference_SANITIZED.md)**  
+Reference guide for Azure DevOps YAML pipeline trigger configuration — branch filters, path filters, scheduled triggers, and pipeline resource triggers. Built as a team reference to reduce misconfiguration in complex multi-repo pipelines.
 
----
+**[02 — E2E Sharded Pipeline](02_E2E_Sharded_Pipeline_SANITIZED.md)**  
+Architecture and implementation of a sharded end-to-end test pipeline that achieved a 32% reduction in gate time (~$50K estimated annual ROI). Covers the sharding strategy, parallel execution model, and the trade-offs involved in splitting a monolithic test suite across pipeline stages.
 
-### 02. E2E Sharded Pipeline Documentation
-**Type:** Technical Deep-Dive with Critical Analysis  
-**Audience:** Senior Engineers, Technical Leadership  
-**Purpose:** Explain sharded test execution architecture and evaluate design decisions
+**[03 — CI/CD Pipeline Template Hierarchy](03_CICD_Pipeline_Template_Hierarchy_SANITIZED.md)**  
+Documentation of a layered Azure DevOps pipeline template system — base templates, extension patterns, and how template inheritance was structured to balance reusability with team-specific customization.
 
-**Key Features:**
-- Executive summary with metrics (32% performance improvement)
-- Mermaid diagrams for visual architecture
-- Critical evaluation section (strengths + improvement opportunities)
-- Cost/benefit analysis
-- Scaling guidelines and future roadmap
+### Distributed Systems Observability
 
----
+**[04 — ServiceControl & ServiceInsight FAQ](04_ServiceControl_ServiceInsight_FAQ_SANITIZED.md)**  
+Operational FAQ for NServiceBus ServiceControl and ServiceInsight tooling — monitoring message flows, diagnosing failed messages, and understanding saga lifecycle visibility across distributed services.
 
-### 03. CI/CD Pipeline Template Hierarchy
-**Type:** Architecture Reference  
-**Audience:** Engineers, DevOps, New Team Members  
-**Purpose:** Visual guide to nested Azure Pipeline templates
+**[05 — KQL Queries & ServiceControl Overview](05_KQL_Queries_ServiceControl_Overview_SANITIZED.md)**  
+Kusto Query Language (KQL) patterns written in Azure for discovering operation IDs from end-to-end test executions in UAT environments, then using those IDs in Application Insights' Transaction Search to trace the full saga traversal through the distributed system — pinpointing successes, failures, and root cause detail. Transaction Search URLs were embedded directly in Jira bug tickets, giving developers immediate access to the full observability context for faster triage. This documentation was presented to the QA team and distributed as a shared reference to enable the same investigation workflow across the team.
 
-**Key Features:**
-- ASCII art diagrams showing template relationships
-- Quick trace strategy for debugging
-- Maintenance tips
-- Clear file paths and responsibilities
+### UI Test Framework
+
+**[06 — UI Test Framework Documentation (Part 1)](06_UI_Test_Framework_Documentation_Part1_SANITIZED.md)**  
+Foundation documentation for a Playwright-based UI test framework — project structure, page object patterns, test data management, and environment configuration for cross-browser execution. (Earlier roles used Selenium; this reflects the most recent framework architecture.)
+
+**[07 — UI Test Framework Documentation (Part 2)](07_UI_Test_Framework_Documentation_Part2_SANITIZED.md)**  
+Advanced patterns and operational guidance — custom wait strategies, network interception for test isolation, CI/CD integration points, and troubleshooting flaky UI tests in pipeline environments.
+
+### Pipeline Reliability & BDD Standards
+
+**[08 — Pipeline Test Reliability Analysis](08_Pipeline_Test_Reliability_Analysis_SANITIZED.md)**  
+Quantitative analysis of test reliability across pipeline runs — failure categorization (infrastructure vs. test logic vs. environment), flakiness metrics, and the data-driven approach used to prioritize stability improvements.
+
+**[09 — BDD Standards and Configuration Layering](09_BDD_Standards_and_Configuration_Layering_SANITIZED.md)**  
+Team BDD standards using Reqnroll/SpecFlow — feature file conventions, step definition organization, configuration layering for multi-environment execution, and patterns for scaling BDD across a growing test suite.
 
 ---
 
-### 04. ServiceControl & ServiceInsight FAQ
-**Type:** Educational Documentation  
-**Audience:** QA Engineers, Developers  
-**Purpose:** Explain NServiceBus tooling for message-based architecture
+## Reference Artifacts
 
-**Key Features:**
-- Question-answer format for easy navigation
-- Integration considerations for E2E testing
-- Safety analysis for test automation usage
-- Practical troubleshooting guidance
+The [`reference-artifacts/`](reference-artifacts/) directory contains learning reference documents produced through deliberate friction-point investigation — stopping at points of confusion, researching the underlying mechanism, and producing a reusable artifact.
 
 ---
 
-### 05. KQL Queries & ServiceControl Overview
-**Type:** Quick Reference + Overview  
-**Audience:** QA Engineers, Support Engineers  
-**Purpose:** Practical queries for distributed system troubleshooting
+## About
 
-**Key Features:**
-- Copy-paste ready KQL queries
-- Visual flow diagrams
-- Concise endpoint discovery explanation
-- Storage and retention information
+These documents represent a subset of work across healthcare, insurance, fintech, and ticketing platforms. The technical focus is backend distributed systems testing in C#/.NET with an emphasis on making test infrastructure reliable, observable, and maintainable at scale.
 
----
-
-### 06-07. UI Test Framework Documentation (Parts 1-2)
-**Type:** Comprehensive Framework Documentation  
-**Audience:** QA Automation Engineers, Developers  
-**Purpose:** Complete technical guide to Playwright/Reqnroll test framework
-
-**Key Features:**
-- Service Principal authentication deep-dive with analogy
-- Thread-safety architecture explanation
-- Dependency resolution guide
-- Page Object Model patterns
-- Troubleshooting checklists
-- Version compatibility matrix
-
-**Notable Sections:**
-- **Service Principal Analogy:** "VIP backstage pass" explanation makes OAuth accessible
-- **Thread-Safety Deep-Dive:** Explains ScenarioContext isolation and parallel execution
-- **Anti-Patterns:** Shows what NOT to do with clear ❌ markers
-
----
-
-### 08. Pipeline Test Reliability Analysis
-**Type:** Root Cause Analysis & Solution Design  
-**Audience:** Engineering Leadership, QA Engineers, DevOps  
-**Purpose:** Document investigation and resolution of months-long test flakiness
-
-**Key Features:**
-- Empirical evidence using Redis profiler logs
-- Two-level isolation failure explanation
-- Proof of fix (manual cache clear = 100% success)
-- Shared environment solution design
-- Enterprise impact and ROI analysis
-- Phased implementation plan
-
-**This Document Could Be:**
-- A conference talk at SeleniumConf or Automation Guild
-- A blog post on solving distributed systems testing challenges
-- A case study for technical leadership interviews
-
----
-
-### 09. BDD Standards & Configuration Layering
-**Type:** Standards Document + Implementation Guide  
-**Audience:** QA Automation Team, Developers  
-**Purpose:** Enforceable standards for Gherkin/BDD and configuration management
-
-**Key Features:**
-- Authority-backed standards (cites Cucumber documentation)
-- Compliant vs Non-Compliant comparison table
-- Configuration precedence explanation
-- Step-by-step implementation examples
-
----
-
-## Technical Skills Demonstrated
-
-### Systems Thinking
-- Understanding of distributed architectures (NServiceBus, Redis, microservices)
-- Ability to trace issues across multiple services
-- Design solutions for shared environments
-
-### Communication Excellence
-- Analogies for complex concepts (backstage pass for OAuth)
-- Visual diagrams (Mermaid, ASCII art)
-- Multiple audience levels (executives, engineers, QA)
-
-### Problem-Solving
-- Root cause analysis using empirical evidence
-- Systematic debugging methodology
-- Solution validation and risk assessment
-
-### Leadership
-- Creating standards, not just instructions
-- Thinking about team scalability and knowledge transfer
-- Providing improvement roadmaps
-
-### Technical Breadth
-- Frontend (Playwright, Angular OAuth)
-- Backend (NServiceBus, Redis, Distributed Systems)
-- Infrastructure (CI/CD, Azure DevOps, Parallel Execution)
-- Testing Patterns (BDD, Page Object Model, Thread Safety)
-
----
-
-## How to Use This Portfolio
-
-**For Hiring Managers:**
-These documents demonstrate my ability to:
-1. Solve complex technical problems
-2. Document solutions for team scale
-3. Communicate technical concepts clearly
-4. Think about long-term maintainability
-5. Consider enterprise impact and ROI
-
-**For Technical Interviewers:**
-Ask me about:
-- The Redis cache contamination investigation (Document 08)
-- Thread-safe test execution architecture (Document 06-07)
-- Pipeline optimization trade-offs (Document 02)
-- How I approach technical documentation
-
-**For Reference:**
-All documents maintain their original technical depth while removing:
-- Company names and internal URLs
-- Specific employee names (except generic examples)
-- Proprietary business logic details
-- Internal tool names (where possible)
-
----
-
-## Contact
-
-For questions about these documents or to discuss technical documentation practices, please reach out through my professional channels.
-
----
-
-## License
-
-These sanitized documentation samples are provided for portfolio purposes. Original work created during employment remains property of respective employers. Sanitized versions shared here contain no proprietary information and demonstrate documentation practices only.
-
----
-
-*Last Updated: November 2025*
-
+→ [GitHub Profile](https://github.com/jsideus) · [LinkedIn](https://www.linkedin.com/in/jeremyideus/) · heisideus@protonmail.com
