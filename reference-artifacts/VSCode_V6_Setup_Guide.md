@@ -10,10 +10,10 @@
 
 You need the .NET SDK before any C# extensions will work properly. C# Dev Kit will prompt you to install it, but doing it via Homebrew gives you cleaner version management.
 
-### Install via Homebrew (recommended since you already have brew)
+## Install via Homebrew (recommended if brew is installed)
 
 ```bash
-# Install .NET 9.0 SDK (current LTS-adjacent, widely used in enterprise)
+# Install .NET 9.0 SDK (current LTS-adjacent, used in enterprise development)
 brew install dotnet-sdk
 
 # Verify installation
@@ -29,7 +29,7 @@ dotnet --info
 dotnet dev-certs https --trust
 ```
 
-**Why this matters and what it does:** When you develop web APIs or any service that uses HTTPS locally (which you will during V6 portfolio work — WireMock.NET, ASP.NET test hosts, etc.), your browser and HTTP clients need to trust the SSL certificate your local dev server presents. By default, .NET generates a self-signed certificate for `localhost`, but macOS doesn't trust self-signed certs — so you'd get security warnings on every request, which becomes a blocker during development.
+**Why this matters & what it does:** When you are developing web APIs or any service that uses HTTPS locally ( V6 portfolio work — WireMock.NET, ASP.NET test hosts, etc.), your browser and HTTP clients need to trust the SSL certificate your local dev server presents. By default, .NET generates a self-signed certificate for `localhost`, but macOS doesn't trust self-signed certs — so you'd get security warnings on every request, which becomes a blocker during development.
 
 This command tells macOS to add that self-signed dev certificate to your login keychain as a trusted certificate. Under the hood, it calls `security add-trusted-cert`, which is the macOS system utility that manages your keychain trust store. It will prompt for your macOS password to authorize the keychain modification.
 
@@ -41,7 +41,7 @@ The net result: when you run a local API (`dotnet run` on an ASP.NET project) an
 
 ## Phase 2: Core Extensions — One Command Install
 
-Copy and paste this entire block into your terminal. This installs everything in one shot.
+This installs everything in one shot.
 
 ```bash
 # ═══════════════════════════════════════════════════════════
