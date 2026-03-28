@@ -23,7 +23,7 @@ dotnet --info
 
 **Which version?** .NET 9.0 is the current production release (SDK 9.0.312 as of March 2026). .NET 10.0 just shipped as Standard Term Support. For V6 portfolio work and interview targets, .NET 9.0 is the safe bet — it's what Datadog-class companies are running in production. You can always install 10 later side-by-side.
 
-### Trust the dev HTTPS certificate (needed for any web API work)
+## Trust the dev HTTPS certificate (needed for any web API work)
 
 ```bash
 dotnet dev-certs https --trust
@@ -335,7 +335,7 @@ C# Dev Kit requires a Microsoft sign-in for full functionality. For individual/p
 
 ---
 
-## What You Now Have vs. Visual Studio
+## This implementation for macOS vs. Visual Studio on Windows
 
 | Visual Studio Feature | VSCode Equivalent |
 |---|---|
@@ -355,10 +355,10 @@ C# Dev Kit requires a Microsoft sign-in for full functionality. For individual/p
 
 ## What's NOT Here (and why)
 
-- **GitHub Copilot** — You have Claude Code. Adding Copilot creates competing AI suggestions and costs $10/mo. Skip it unless you specifically want to evaluate it later.
+- **GitHub Copilot** — Claude Code, is the most optimal for now. Adding Copilot creates competing AI suggestions and costs $10/mo.
 - **ReSharper** — Roslynator covers the code analysis gap. ReSharper is Windows/VS-only anyway.
-- **Live Share** — Useful for pair programming but not needed for solo V6 work. Add later if a portfolio project calls for it.
-- **Azure DevOps extension** — Your V6 portfolio targets GitHub Actions. The YAML extension covers pipeline file editing. Add the Azure extension only if you get a role that uses ADO.
+- **Live Share** — Useful for pair programming but not needed for this/my work. Add later if a new portfolio project calls for it.
+- **Azure DevOps extension** — My V6 portfolio targets GitHub Actions. The YAML extension covers pipeline file editing. Add the Azure extension only if you get a role that uses ADO.
 
 ---
 
@@ -374,13 +374,14 @@ dotnet new sln -n MySolution          # Solution file
 # Add project to solution
 dotnet sln add MyTests/MyTests.csproj
 
-# Add NuGet packages (your common ones)
+# Add NuGet packages (the common ones)
 dotnet add package Reqnroll.xUnit     # BDD framework
 dotnet add package FluentAssertions   # Better assertions
 dotnet add package Moq                # Mocking
 dotnet add package WireMock.Net       # Service virtualization
 dotnet add package Microsoft.Playwright  # UI testing
 dotnet add package Refit              # REST client generation
+dotnet add package Dapper             # Database command library 
 
 # Build and test
 dotnet build
