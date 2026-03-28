@@ -8,7 +8,7 @@
 
 ## Phase 1: .NET SDK Installation
 
-You need the .NET SDK before any C# extensions will work properly. C# Dev Kit will prompt you to install it, but doing it via Homebrew gives you cleaner version management.
+The .NET SDK is required before any C# extensions will work properly. C# Dev Kit will prompt for the install, but doing it via Homebrew gives cleaner version management.
 
 ## Install via Homebrew (recommended if brew is installed)
 
@@ -21,7 +21,7 @@ dotnet --version
 dotnet --info
 ```
 
-**Which version?** .NET 9.0 is the current production release (SDK 9.0.312 as of March 2026). .NET 10.0 just shipped as Standard Term Support. For V6 portfolio work and interview targets, .NET 9.0 is the safe bet — it's what Datadog-class companies are running in production. You can always install 10 later side-by-side.
+**Which version?** .NET 9.0 is the current production release (SDK 9.0.312 as of March 2026). .NET 10.0 just shipped as Standard Term Support. For V6 portfolio work and interview targets, .NET 9.0 is the safe bet — it's what Datadog-class companies are running in production. Can always install 10 later side-by-side.
 
 ## Trust the dev HTTPS certificate (needed for any web API work)
 
@@ -31,7 +31,7 @@ dotnet dev-certs https --trust
 
 **Why this matters & what it does:** When you are developing web APIs or any service that uses HTTPS locally ( V6 portfolio work — WireMock.NET, ASP.NET test hosts, etc.), your browser and HTTP clients need to trust the SSL certificate your local dev server presents. By default, .NET generates a self-signed certificate for `localhost`, but macOS doesn't trust self-signed certs — so you'd get security warnings on every request, which becomes a blocker during development.
 
-This command tells macOS to add that self-signed dev certificate to your login keychain as a trusted certificate. Under the hood, it calls `security add-trusted-cert`, which is the macOS system utility that manages your keychain trust store. It will prompt for your macOS password to authorize the keychain modification.
+This command tells macOS to add that self-signed dev certificate to your login keychain as a trusted certificate. Under the hood, it calls `security add-trusted-cert`, which is the macOS system utility that manages the keychain trust store. It will prompt for my macOS password to authorize the keychain modification.
 
 The net result: when you run a local API (`dotnet run` on an ASP.NET project) and hit `https://localhost:5001`, it just works without certificate errors. One-time setup, never needs to be repeated unless you explicitly remove the cert.
 
